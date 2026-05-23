@@ -94,11 +94,11 @@ body {
   box-shadow:0 2px 6px rgba(26,39,68,0.06); display:flex; flex-direction:column;
 }
 .date-card.featured { border-color:var(--gold); box-shadow:0 2px 12px rgba(201,151,58,0.18); }
-.date-card-top { background:var(--navy); padding:6px 12px 5px; text-align:center; }
+.date-card-top { background:var(--navy); padding:7px 12px 6px; text-align:center; }
 .date-card.featured .date-card-top { background:var(--gold); }
-.date-month { font-size:8px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.85); margin-bottom:1px; }
-.date-day { font-family:var(--display); font-size:22px; font-weight:300; color:white; line-height:1; margin:1px 0; }
-.date-dow { font-size:7.5px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.60); }
+.date-month { font-size:9px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.90); margin-bottom:2px; }
+.date-day { font-family:var(--display); font-size:28px; font-weight:300; color:white; line-height:1; margin:2px 0; }
+.date-dow { font-size:8px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.70); }
 .date-card-body { padding:5px 10px 7px; text-align:center; display:flex; flex-direction:column; align-items:center; flex:1; }
 .date-badge { display:inline-block; font-size:7px; font-weight:700; letter-spacing:0.10em; text-transform:uppercase; padding:2px 8px; border-radius:100px; background:var(--gold); color:white; margin-bottom:3px; }
 .date-card:not(.featured) .date-badge { background:var(--navy); }
@@ -109,7 +109,7 @@ body {
 /* CONTENT ROW */
 .content-row { display:flex; padding:0 28px 8px; flex:1; min-height:0; gap:16px; }
 
-/* LEFT — photos only, fills height */
+/* LEFT — photos only */
 .photo-col {
   width:44%; flex-shrink:0;
   display:flex; flex-direction:column; gap:5px; min-height:0;
@@ -124,9 +124,9 @@ body {
 .detail-heading em { color:var(--gold); font-style:italic; }
 .specs-row { display:flex; gap:5px; margin-bottom:9px; flex-wrap:wrap; flex-shrink:0; }
 .spec-chip { background:var(--navy); color:white; font-size:8.5px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:3px 9px; border-radius:100px; }
-.desc-text { font-size:9px; color:rgba(26,39,68,0.66); line-height:1.6; flex:1; overflow:hidden; margin-bottom:8px; }
+.desc-text { font-size:10.5px; color:rgba(26,39,68,0.70); line-height:1.65; flex:1; overflow:hidden; margin-bottom:8px; }
 
-/* QR BLOCK — under description on right */
+/* QR BLOCK */
 .qr-block {
   display:flex; align-items:center; gap:12px;
   background:var(--navy); border-radius:8px; padding:10px 14px; flex-shrink:0;
@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <div class="headline-section">
     <div class="eyebrow">
       <div class="eyebrow-line"></div>
-      <span class="eyebrow-text">Parkes at Stonebridge &middot; Open Every Saturday 1&ndash;3 PM</span>
+      <span class="eyebrow-text">Parkes at Stonebridge</span>
     </div>
     <h1 class="main-headline"><em>Open House</em></h1>
     <p class="sub-headline">Come see what your neighbors have been raving about &mdash; no appointment necessary.</p>
@@ -272,8 +272,10 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     </div>
     <div class="date-card">
-      <div class="date-card-top" style="padding:10px 12px;">
-        <div class="date-day" style="font-size:17px; padding:3px 0; line-height:1.2;">Any<br/>Time</div>
+      <div class="date-card-top" style="padding:7px 12px 6px;">
+        <div class="date-month" style="font-size:9px; font-weight:700; letter-spacing:0.14em; color:rgba(255,255,255,0.90); margin-bottom:2px;">BY APPT</div>
+        <div class="date-day" style="font-size:28px; font-weight:300; color:white; line-height:1; margin:2px 0; font-family:'Fraunces',Georgia,serif;">Any<br/>Time</div>
+        <div class="date-dow" style="font-size:8px; letter-spacing:0.16em; color:rgba(255,255,255,0.70);">FLEXIBLE</div>
       </div>
       <div class="date-card-body">
         <div class="date-badge appt-badge">Private Showing</div>
@@ -283,7 +285,6 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </div>
 
-  <!-- CONTENT ROW: photos left, description+QR right -->
   <div class="content-row">
     <div class="photo-col">
       <img class="photo-top" src="https://raw.githubusercontent.com/lasersolosbd/762Stonebridge-SPW/main/public/03-MG_6624.jpg" alt="Living room"/>
@@ -296,12 +297,12 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="detail-heading">A home that comes with its own <em>park.</em></div>
       <div class="specs-row">
         <span class="spec-chip">3 Bed</span>
-        <span class="spec-chip">3 Bath</span>
+        <span class="spec-chip">2.5 Bath</span>
         <span class="spec-chip">1,549 Sq Ft</span>
         <span class="spec-chip">2-Car Garage</span>
         <span class="spec-chip">Built 2019</span>
       </div>
-      <div class="desc-text">Step outside your front door and you&rsquo;re not staring at a parking lot or your neighbor&rsquo;s fence &mdash; you&rsquo;re stepping directly into one of Longmont&rsquo;s most thoughtfully designed community parks. Morning coffee out here hits differently when there&rsquo;s actual grass, actual trees, and actual quiet.<br/><br/>Inside, the living room opens up around you &mdash; open concept, natural light, and a gas fireplace for a Friday night in. And then there&rsquo;s the kitchen &mdash; open, flowing, the center of things. Head upstairs to the primary suite, or set up at the top of the stairs in the extra space &mdash; a proper spot that makes working from home feel like something you designed on purpose.<br/><br/>Boulder is twenty minutes down the Diagonal. You already know if this is your place. Come see it anyway &mdash; just to be sure.</div>
+      <div class="desc-text">Step outside your front door and you&rsquo;re not staring at a parking lot or your neighbor&rsquo;s fence &mdash; you&rsquo;re stepping directly into one of Longmont&rsquo;s most thoughtfully designed community parks. Morning coffee out here hits differently when there&rsquo;s actual grass, actual trees, and actual quiet.<br/><br/>Inside, the living room opens up around you &mdash; open concept, natural light, and a fireplace for a Friday night in. And then there&rsquo;s the kitchen &mdash; open, flowing, the center of things. Head upstairs to the primary suite, or set up at the top of the stairs in the extra space &mdash; a proper spot that makes working from home feel like something you designed on purpose.<br/><br/>Boulder is twenty minutes down the Diagonal. You already know if this is your place. Come see it anyway &mdash; just to be sure.</div>
       <div class="qr-block">
         <img src="data:image/png;base64,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" alt="QR code"/>
         <div class="qr-text">
