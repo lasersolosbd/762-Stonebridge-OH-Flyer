@@ -86,36 +86,82 @@ body {
 .main-headline em { font-style:italic; color:var(--gold); }
 .sub-headline { font-size:11px; font-style:italic; color:rgba(26,39,68,0.60); line-height:1.4; max-width:680px; }
 
-/* DATE CARDS */
+/* DATE CARDS — original CSS exactly, plus fixed height to lock card size */
 .dates-section { padding:7px 28px 6px; display:flex; gap:10px; flex-shrink:0; }
 .date-card {
   flex:1; border-radius:8px; overflow:hidden;
   border:1.5px solid rgba(26,39,68,0.10); background:white;
   box-shadow:0 2px 6px rgba(26,39,68,0.06); display:flex; flex-direction:column;
+  height:145px; /* locked height — same for all three cards */
 }
 .date-card.featured { border-color:var(--gold); box-shadow:0 2px 12px rgba(201,151,58,0.18); }
 .date-card-top {
   background:var(--navy);
-  min-height:95px;
+  height:78px; /* fixed — prevents FB card from expanding it */
+  overflow:hidden;
   display:flex; flex-direction:column; justify-content:center; align-items:center;
-  padding:8px 12px; text-align:center;
+  padding:6px 12px; text-align:center;
+  flex-shrink:0;
 }
 .date-card.featured .date-card-top { background:var(--gold); }
-.date-month { font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.90); margin-bottom:2px; }
-.date-day { font-family:var(--display); font-size:38px; font-weight:300; color:white; line-height:1; margin:2px 0; }
-.date-dow { font-size:10px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.75); }
-.date-card-body { padding:5px 10px 7px; text-align:center; display:flex; flex-direction:column; align-items:center; flex:1; }
+.date-month { font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.90); margin-bottom:1px; }
+.date-day { font-family:var(--display); font-size:28px; font-weight:300; color:white; line-height:1; margin:1px 0; }
+.date-dow { font-size:9px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.75); }
+.date-card-body {
+  padding:5px 10px 7px; text-align:center; display:flex; flex-direction:column;
+  align-items:center; flex:1; overflow:hidden;
+}
 .date-badge { display:inline-block; font-size:7px; font-weight:700; letter-spacing:0.10em; text-transform:uppercase; padding:2px 8px; border-radius:100px; background:var(--gold); color:white; margin-bottom:3px; }
 .date-card:not(.featured) .date-badge { background:var(--navy); }
 .appt-badge { background:rgba(26,39,68,0.08) !important; color:var(--navy) !important; }
 .date-time { font-size:12px; font-weight:600; color:var(--navy); line-height:1.2; }
 .date-label { font-size:8.5px; color:rgba(26,39,68,0.50); margin-top:2px; line-height:1.3; }
 .anytime-text {
-  font-family:var(--display); font-size:30px; font-weight:300;
+  font-family:var(--display); font-size:22px; font-weight:300;
   color:white; line-height:1.15;
 }
 
-/* CONTENT ROW */
+/* CARD 1 inner additions */
+.c1-eyebrow { font-size:7px; font-weight:700; letter-spacing:0.13em; text-transform:uppercase; color:rgba(255,255,255,0.78); margin-bottom:1px; }
+.c1-divider { width:75%; height:1px; background:rgba(255,255,255,0.28); margin:3px 0 2px; }
+.c1-next-row { display:flex; align-items:center; gap:4px; }
+.c1-next-day { font-family:var(--display); font-size:15px; font-weight:300; color:rgba(255,255,255,0.92); line-height:1; }
+.c1-next-label { display:flex; flex-direction:column; align-items:flex-start; }
+.c1-next-label span { font-size:6.5px; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:rgba(255,255,255,0.68); line-height:1.3; }
+
+/* CARD 2 FB — border only, no size change */
+.date-card.fb-card {
+  border:2.5px solid #1877F2;
+  box-shadow:0 0 0 3px rgba(24,119,242,0.14), 0 2px 10px rgba(24,119,242,0.18);
+  position:relative;
+}
+.fb-card-tag {
+  position:absolute; top:0; right:0; z-index:5;
+  background:#1877F2; color:white;
+  font-family:var(--body); font-size:6px; font-weight:700;
+  letter-spacing:0.10em; text-transform:uppercase;
+  padding:2px 6px; border-radius:0 6px 0 6px;
+}
+.date-card.fb-card .date-card-top {
+  background:#1877F2;
+  padding:6px 10px;
+  justify-content:center;
+}
+.fb-group-name {
+  font-size:13.5px; font-weight:700; letter-spacing:0.04em;
+  text-transform:uppercase; color:white; line-height:1.25; text-align:center;
+}
+/* FB body — everything sized to fit the fixed 67px body height */
+.fb-body-inner { display:flex; flex-direction:column; align-items:center; gap:1px; width:100%; }
+.fb-invite { font-family:var(--display); font-size:10px; font-weight:600; color:var(--navy); line-height:1.1; }
+.fb-invite em { color:#1877F2; font-style:italic; }
+.fb-qr { width:44px; height:44px; image-rendering:pixelated; background:white; padding:1px; border-radius:2px; flex-shrink:0; }
+.fb-scan-txt { font-size:5.5px; color:rgba(26,39,68,0.45); line-height:1; }
+.fb-code-block { background:var(--navy); border-radius:3px; padding:2px 6px 3px; width:100%; text-align:center; }
+.fb-code-value { font-family:var(--display); font-size:12px; font-weight:700; color:white; letter-spacing:0.05em; line-height:1.1; }
+.fb-code-note { font-size:5px; color:rgba(255,255,255,0.55); line-height:1.25; }
+
+/* CONTENT ROW — identical to original */
 .content-row { display:flex; padding:0 28px 8px; flex:1; min-height:0; gap:16px; }
 .photo-col {
   width:44%; flex-shrink:0;
@@ -131,7 +177,7 @@ body {
 .spec-chip { background:var(--navy); color:white; font-size:8.5px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:3px 9px; border-radius:100px; }
 .desc-text { font-size:10.5px; color:rgba(26,39,68,0.70); line-height:1.65; flex:1; overflow:hidden; margin-bottom:8px; }
 
-/* QR BLOCK */
+/* QR BLOCK — identical to original */
 .qr-block {
   display:flex; align-items:center; gap:12px;
   background:var(--navy); border-radius:8px; padding:10px 14px; flex-shrink:0;
@@ -146,7 +192,7 @@ body {
 
 .divider { margin:0 28px; height:1px; background:rgba(26,39,68,0.10); flex-shrink:0; }
 
-/* BOTTOM CTA */
+/* BOTTOM CTA — identical to original */
 .bottom-cta {
   background:var(--navy); margin:6px 28px 4px;
   border-radius:12px; padding:9px 16px 8px 16px;
@@ -173,7 +219,7 @@ body {
 .cta-divider { width:100%; height:1px; background:rgba(255,255,255,0.10); margin:6px 0 5px; }
 .cta-website { font-size:13px; font-weight:500; color:rgba(255,255,255,0.80); letter-spacing:0.06em; text-align:center; }
 
-/* DISCLAIMER & FOOTER */
+/* DISCLAIMER & FOOTER — identical to original */
 .marketing-disclaimer { margin:3px 28px 1px; text-align:center; flex-shrink:0; }
 .marketing-disclaimer p { font-size:8px; font-weight:700; color:var(--navy); letter-spacing:0.02em; line-height:1.4; }
 .footer-compliance { padding:1px 28px 5px; text-align:center; flex-shrink:0; }
@@ -205,8 +251,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const [s1, s2] = getNextTwoSaturdays();
   document.getElementById('date1-month').textContent = MONTHS[s1.getMonth()].toUpperCase() + ' ' + s1.getFullYear();
   document.getElementById('date1-day').textContent = s1.getDate();
-  document.getElementById('date2-month').textContent = MONTHS[s2.getMonth()].toUpperCase() + ' ' + s2.getFullYear();
   document.getElementById('date2-day').textContent = s2.getDate();
+  document.getElementById('date2-month').textContent = MONTHS[s2.getMonth()].toUpperCase();
 });
 </script>
 </head>
@@ -237,7 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="hero-address-bar">
       <div class="dot"></div>
       <div class="hero-address-text">762 Stonebridge Drive &middot; Longmont, CO 80503</div>
-      <div class="hero-address-price">$460,000</div>
+      <div class="hero-address-price">60,000</div>
     </div>
   </div>
   <div class="hero-bar"></div>
@@ -252,30 +298,49 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 
   <div class="dates-section">
+
+    <!-- CARD 1: This Saturday + next. Fixed height locks size. -->
     <div class="date-card featured">
       <div class="date-card-top">
-        <div class="date-month" id="date1-month">MAY 2026</div>
-        <div class="date-day" id="date1-day">23</div>
+        <div class="date-month" id="date1-month">JUNE 2026</div>
+        <div class="date-day" id="date1-day">7</div>
         <div class="date-dow">Saturday</div>
+        <div class="c1-divider"></div>
+        <div class="c1-next-row">
+          <div class="c1-next-day" id="date2-day">14</div>
+          <div class="c1-next-label">
+            <span id="date2-month">JUNE</span>
+            <span>Next Open House</span>
+          </div>
+        </div>
       </div>
       <div class="date-card-body">
-        <div class="date-badge">This Weekend</div>
+        <div class="date-badge">This Saturday</div>
         <div class="date-time">1:00 PM &ndash; 3:00 PM</div>
         <div class="date-label">All welcome &middot; No appointment needed</div>
       </div>
     </div>
-    <div class="date-card">
+
+    <!-- CARD 2: FB Group. Fixed height. All content sized to fit. -->
+    <div class="date-card fb-card">
+      <div class="fb-card-tag">&#9733; For Neighbors</div>
       <div class="date-card-top">
-        <div class="date-month" id="date2-month">MAY 2026</div>
-        <div class="date-day" id="date2-day">30</div>
-        <div class="date-dow">Saturday</div>
+        <div class="fb-group-name">Parkes at Stonebridge<br/>Facebook Group</div>
       </div>
       <div class="date-card-body">
-        <div class="date-badge">Coming Up</div>
-        <div class="date-time">1:00 PM &ndash; 3:00 PM</div>
-        <div class="date-label">All welcome &middot; No appointment needed</div>
+        <div class="fb-body-inner">
+          <div class="fb-invite">Join your <em>neighbors!</em></div>
+          <img class="fb-qr" src="data:image/png;base64,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" alt="QR — FB Group"/>
+          <div class="fb-scan-txt">Scan to request to join</div>
+          <div class="fb-code-block">
+            <div class="fb-code-value">PARKES762</div>
+            <div class="fb-code-note">Enter this code with your join request so we know you&rsquo;re a neighbor!</div>
+          </div>
+        </div>
       </div>
     </div>
+
+    <!-- CARD 3: Verbatim from original. -->
     <div class="date-card">
       <div class="date-card-top">
         <div class="anytime-text">Any<br/>Time</div>
@@ -286,6 +351,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="date-label">Call Mark &mdash; we&rsquo;ll make<br/>it work for your schedule.</div>
       </div>
     </div>
+
   </div>
 
   <div class="content-row">
@@ -307,7 +373,7 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="desc-text">Step outside your front door and you&rsquo;re not staring at a parking lot or your neighbor&rsquo;s fence &mdash; you&rsquo;re stepping directly into one of Longmont&rsquo;s most thoughtfully designed community parks. Morning coffee out here hits differently when there&rsquo;s actual grass, actual trees, and actual quiet.<br/><br/>Inside, the living room opens up around you &mdash; open concept, natural light, and a fireplace for a Friday night in. And then there&rsquo;s the kitchen &mdash; open, flowing, the center of things. Head upstairs to the primary suite, or set up at the top of the stairs in the extra space &mdash; a proper spot that makes working from home feel like something you designed on purpose.<br/><br/>Boulder is twenty minutes down the Diagonal. You already know if this is your place. Come see it anyway &mdash; just to be sure.</div>
       <div class="qr-block">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoCAIAAABkZftOAAAGHElEQVR4nO3dsXEltxJA0c9fSkUxKBmFp2QUgxKguQ59JSAYKDV0geU55tZy3nD4bsHoAubj68fn/4D/1v/rG4DvSHgQEB4EhAcB4UFAeBAQHgSEBwHhQUB4EBAeBIQHAeFBQHgQEB4Eftn9gV9/+/3EfYz7688//vHfd+9/dZ2V264/Zeo+X/l9d+3+XlY8CAgPAsKDgPAgIDwICA8CwoPA9hxvZXeOMeX0nGd3HjU1P9y1+7mvz9Ne/75Z8SAgPAgIDwLCg4DwICA8CAgPAmNzvJWpucfU3GZq3jU131s5fT9Tn7uruv6u03NCKx4EhAcB4UFAeBAQHgSEBwHhQeD4HO82t+3fq+Z1U267n1dY8SAgPAgIDwLCg4DwICA8CAgPAt9ujlede3l6n9jr++i+GyseBIQHAeFBQHgQEB4EhAcB4UHg+BzvlTnP1Hyveu9cNZ+8zSvfNyseBIQHAeFBQHgQEB4EhAcB4UFgbI73yrxoal/Z6/viXj/n85Xv24oVDwLCg4DwICA8CAgPAsKDgPAgsD3He2W/05Sp+diU1/fd3fY8K1Y8CAgPAsKDgPAgIDwICA8CwoPA9hxvar/Wyuk5VXV+5pTTz/P0vrvXP3dl936seBAQHgSEBwHhQUB4EBAeBIQHgePvx9t129xvZeo+p+aBU8+hmpvtemW+t2LFg4DwICA8CAgPAsKDgPAgIDwIfHz9+By50G379Kr9XSun73/3c1equdbp57/7ufbjwU9IeBAQHgSEBwHhQUB4EBAeBMb2471+LuLU5+5eZ1f1uSun/+67Xjk31YoHAeFBQHgQEB4EhAcB4UFAeBA4/n6806bme1PnT65Uz2fl9Bz1tv2Eu+zHg5+Q8CAgPAgIDwLCg4DwICA8CIztx3t9/9Xu9Su3zVGnnH5P4JSp61vxICA8CAgPAsKDgPAgIDwICA8CY+/HW3n9PWbVvrvqPMyVan5Ynct6mhUPAsKDgPAgIDwICA8CwoOA8CDw/LmaU/O90+dz7j6fqffOTZ0juqt6n+Gu6vtsxYOA8CAgPAgIDwLCg4DwICA8CIydq7lyes425fR8yTmfs///9P2cZsWDgPAgIDwICA8CwoOA8CAgPAhsz/G+27mUU/OolWpO+Mrccsrp+d7u392KBwHhQUB4EBAeBIQHAeFBQHgQGDtXs/L6+9NOn4c5df/V/rpXrrPLigcB4UFAeBAQHgSEBwHhQUB4EPj4+vF59AOq+Vh1DueUV/Yxnv7cah57+ntrxYOA8CAgPAgIDwLCg4DwICA8CFz3frzb5ja7bju/cer5VPsSV27bB+hcTXiA8CAgPAgIDwLCg4DwICA8CIydqzk1F7rtvMRqf1rllfMzq+/bFCseBIQHAeFBQHgQEB4EhAcB4UEgO1dz5bZ9a7uqfWXV/LCag1Xzxt37WbHiQUB4EBAeBIQHAeFBQHgQEB4Exs7VvO08yV3V++VOO/2cq3NTd1XzvRUrHgSEBwHhQUB4EBAeBIQHAeFBYHs/3un9YLed37h7nSmv7NO7bT62cnp+aD8ePEB4EBAeBIQHAeFBQHgQEB4Ejp+reZvb5k7VeY+vzP2mrr9SnUdqxYOA8CAgPAgIDwLCg4DwICA8CGyfq3nbuZErr7wfb/c63+39eFO/b/V8Vqx4EBAeBIQHAeFBQHgQEB4EhAeBsffj/axzpF3VOZ+nvX5+6W379Kx4EBAeBIQHAeFBQHgQEB4EhAeBsTneyiv73Fam9oPddk7m6f1+u7/v6+eX7rLiQUB4EBAeBIQHAeFBQHgQEB4Ejs/xblPNu6pzMqs51en9eFPvOaz2DVrxICA8CAgPAsKDgPAgIDwICA8C326Ot2tqX9nufG/K6/PDV96/t8uKBwHhQUB4EBAeBIQHAeFBQHgQOD7Hq96bt1Lt11qp5lSnVedYVvNJ+/HgAcKDgPAgIDwICA8CwoOA8CDw8fXjc+sHqrnQruo8xpVqTrhy27mXU257H+OKFQ8CwoOA8CAgPAgIDwLCg4DwILA9xwP+PSseBIQHAeFBQHgQEB4EhAcB4UFAeBAQHgSEBwHhQUB4EBAeBIQHAeFB4G/TNfZ/Vi+E/AAAAABJRU5ErkJggg==" alt="QR code"/>
+        <img src="data:image/png;base64,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" alt="QR code"/>
         <div class="qr-text">
           <div class="qr-label">Scan for full listing &amp; photos</div>
           <div class="qr-url">762stonebridge.solomonhomeservices.com</div>
@@ -327,7 +393,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="cta-tagline">Serving the Parkes at Stonebridge &amp; all of Northern Colorado</div>
         <div class="bottom-cta-headline">Want to know what your house<br/>is <em>worth?</em> Call me now.</div>
         <div class="cta-logos-row">
-          <img class="nar-logo" src="https://raw.githubusercontent.com/lasersolosbd/762Stonebridge-SPW/main/public/nar_membershipmark_white.png" alt="REALTOR®"/>
+          <img class="nar-logo" src="https://raw.githubusercontent.com/lasersolosbd/762Stonebridge-SPW/main/public/nar_membershipmark_white.png" alt="REALTOR&reg;"/>
           <img class="eho-logo-img" src="https://raw.githubusercontent.com/lasersolosbd/762Stonebridge-SPW/main/public/equal-housing-opportunity-logo.png" alt="Equal Housing Opportunity"/>
         </div>
       </div>
