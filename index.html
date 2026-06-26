@@ -86,18 +86,18 @@ body {
 .main-headline em { font-style:italic; color:var(--gold); }
 .sub-headline { font-size:11px; font-style:italic; color:rgba(26,39,68,0.60); line-height:1.4; max-width:680px; }
 
-/* DATE CARDS — original CSS exactly, plus fixed height to lock card size */
+/* DATE CARDS */
 .dates-section { padding:7px 28px 6px; display:flex; gap:10px; flex-shrink:0; }
 .date-card {
   flex:1; border-radius:8px; overflow:hidden;
   border:1.5px solid rgba(26,39,68,0.10); background:white;
   box-shadow:0 2px 6px rgba(26,39,68,0.06); display:flex; flex-direction:column;
-  height:145px; /* locked height — same for all three cards */
+  height:145px;
 }
 .date-card.featured { border-color:var(--gold); box-shadow:0 2px 12px rgba(201,151,58,0.18); }
 .date-card-top {
   background:var(--navy);
-  height:78px; /* fixed — prevents FB card from expanding it */
+  height:78px;
   overflow:hidden;
   display:flex; flex-direction:column; justify-content:center; align-items:center;
   padding:6px 12px; text-align:center;
@@ -129,7 +129,7 @@ body {
 .c1-next-label { display:flex; flex-direction:column; align-items:flex-start; }
 .c1-next-label span { font-size:6.5px; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:rgba(255,255,255,0.68); line-height:1.3; }
 
-/* CARD 2 FB — border only, no size change */
+/* CARD 2 FB */
 .date-card.fb-card {
   border:2.5px solid #1877F2;
   box-shadow:0 0 0 3px rgba(24,119,242,0.14), 0 2px 10px rgba(24,119,242,0.18);
@@ -151,7 +151,6 @@ body {
   font-size:13.5px; font-weight:700; letter-spacing:0.04em;
   text-transform:uppercase; color:white; line-height:1.25; text-align:center;
 }
-/* FB body — side-by-side: QR left, code right */
 .fb-body-inner { display:flex; flex-direction:row; align-items:center; gap:0; width:100%; height:100%; }
 .fb-left { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; flex-shrink:0; }
 .fb-qr { width:46px; height:46px; image-rendering:pixelated; background:white; padding:1px; border-radius:2px; flex-shrink:0; }
@@ -164,7 +163,7 @@ body {
 .fb-code-value { font-family:var(--display); font-size:13px; font-weight:700; color:white; letter-spacing:0.05em; line-height:1.1; }
 .fb-code-note { font-size:5.5px; color:rgba(255,255,255,0.60); line-height:1.3; margin-top:1px; }
 
-/* CONTENT ROW — identical to original */
+/* CONTENT ROW */
 .content-row { display:flex; padding:0 28px 8px; flex:1; min-height:0; gap:16px; }
 .photo-col {
   width:44%; flex-shrink:0;
@@ -180,7 +179,7 @@ body {
 .spec-chip { background:var(--navy); color:white; font-size:8.5px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:3px 9px; border-radius:100px; }
 .desc-text { font-size:10.5px; color:rgba(26,39,68,0.70); line-height:1.65; flex:1; overflow:hidden; margin-bottom:8px; }
 
-/* QR BLOCK — identical to original */
+/* QR BLOCK */
 .qr-block {
   display:flex; align-items:center; gap:12px;
   background:var(--navy); border-radius:8px; padding:10px 14px; flex-shrink:0;
@@ -195,7 +194,7 @@ body {
 
 .divider { margin:0 28px; height:1px; background:rgba(26,39,68,0.10); flex-shrink:0; }
 
-/* BOTTOM CTA — identical to original */
+/* BOTTOM CTA */
 .bottom-cta {
   background:var(--navy); margin:6px 28px 4px;
   border-radius:12px; padding:9px 16px 8px 16px;
@@ -222,7 +221,7 @@ body {
 .cta-divider { width:100%; height:1px; background:rgba(255,255,255,0.10); margin:6px 0 5px; }
 .cta-website { font-size:13px; font-weight:500; color:rgba(255,255,255,0.80); letter-spacing:0.06em; text-align:center; }
 
-/* DISCLAIMER & FOOTER — identical to original */
+/* DISCLAIMER & FOOTER */
 .marketing-disclaimer { margin:3px 28px 1px; text-align:center; flex-shrink:0; }
 .marketing-disclaimer p { font-size:8px; font-weight:700; color:var(--navy); letter-spacing:0.02em; line-height:1.4; }
 .footer-compliance { padding:1px 28px 5px; text-align:center; flex-shrink:0; }
@@ -245,8 +244,14 @@ function getNextTwoSaturdays() {
   const first = new Date(now);
   first.setDate(now.getDate() + daysUntilFirst);
   first.setHours(0,0,0,0);
-  const second = new Date(first);
+  let second = new Date(first);
   second.setDate(first.getDate() + 7);
+
+  // Skip July 4th — no open house on the holiday
+  if (second.getMonth() === 6 && second.getDate() === 4) {
+    second.setDate(second.getDate() + 7);
+  }
+
   return [first, second];
 }
 const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -302,7 +307,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   <div class="dates-section">
 
-    <!-- CARD 1: This Saturday + next. Fixed height locks size. -->
+    <!-- CARD 1: This Saturday + next -->
     <div class="date-card featured">
       <div class="date-card-top">
         <div class="date-month" id="date1-month">JUNE 2026</div>
@@ -324,7 +329,7 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     </div>
 
-    <!-- CARD 2: FB Group. Fixed height. All content sized to fit. -->
+    <!-- CARD 2: FB Group -->
     <div class="date-card fb-card">
       <div class="fb-card-tag">&#9733; For Neighbors</div>
       <div class="date-card-top">
@@ -333,7 +338,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="date-card-body">
         <div class="fb-body-inner">
           <div class="fb-left">
-            <img class="fb-qr" src="data:image/png;base64,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" alt="QR — FB Group"/>
+            <img class="fb-qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoCAIAAABkZftOAAAGB0lEQVR4nO3dwY1kNRRAURqRxSRAIkRNIiQwcXwWrJD4C0t+XLvrnCUaqn5V15UXT7a/nuf5Bfh//Vo/AHwi4UFAeBAQHgSEBwHhQUB4EBAeBIQHAeFBQHgQEB4EhAcB4UFAeBD4bfV/+PH7HxPPsd3Pv/78z/9+2vO/Peeq1c+1+r7Tr7/rfSurn9eKBwHhQUB4EBAeBIQHAeFBQHgQWJ7jvdk1t1lVzXl2zQnf/v3q66/++11zuenPu/o803b93qx4EBAeBIQHAeFBQHgQEB4EhAeBbXO8N7vmHtNzm+n9aauqedfq3G/XvHGXW35vVjwICA8CwoOA8CAgPAgIDwLCg8D4HO80u/aVTZ8bOb0fb9pp873TWPEgIDwICA8CwoOA8CAgPAgIDwLfN8ebPpdy17576bOjVy1XW76e7vinafew4oHAeFBQHgQEB4EhAcB4UFAeBAQHgS2zfHe7Jp7TM9tpvenrarmXatz+13zxl1u+b1Z8SAgPAgIDwLCg4DwICA8CAgPAtvmeNX5jatOO8eyOidz+tzL6ed/5ff2xooHAeFBQHgQEB4EhAcB4UFAeBAQHgS27X68abmteNX0vr3vus9bl2feN6keBAQHgSEBwHhQUB4EBAeBIQHgY/N8bJzKZdv8+a0ue5p+/Gq8z5P268oHgSEBwHhQUB4EBAeBIQHAeFBQHgQ2H4/3vQcb9e+tOlzI6fvpZved2jeP+mco+JBQHgQEB4EhAcB4UFAeBAQHgS+nud5fIYPtu17M62696utWPEgIDwICA8CwoOA8CAgPAgIDwLb5nj/m92zeNS+tOq7VuaL7+bW/7eKx4EhAcB4UFAeBAQHgSEBwHhQUB4ENg2x6vOb9y+nwqAFQ8CwoOA8CAgPAgIDwLCg4DwICA8CAgPAsKDgPAgIDwICA8CwoPAsn8/3rRd+7Vu3U+1fe/cqnmepub9rAiHFQ8CwoOA8CAgPAgIDwLCg4DwIDA+x7tl7lTduyvXOe3dyXXO+XLbHsMVKx4EhAcB4UFAeBAQHgSEBwHhQWB7jvfKfqcpU/OxKa/vu7vtedgpKx4EhAcB4UFAeBAQHgSEBwHhQWBsjlede7nqtPN/b3vO9rSf04oHAeFBQHgQEB4EhAcB4UFAeBAQHgS2nau5a35j1WnvDw== " alt="QR — FB Group"/>
             <div class="fb-scan-txt">Scan to join</div>
           </div>
           <div class="fb-vsep"></div>
@@ -348,7 +353,7 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     </div>
 
-    <!-- CARD 3: Verbatim from original. -->
+    <!-- CARD 3: Private Showing -->
     <div class="date-card">
       <div class="date-card-top">
         <div class="anytime-text">Any<br/>Time</div>
@@ -381,7 +386,7 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="desc-text">Step outside your front door and you&rsquo;re not staring at a parking lot or your neighbor&rsquo;s fence &mdash; you&rsquo;re stepping directly into one of Longmont&rsquo;s most thoughtfully designed community parks. Morning coffee out here hits differently when there&rsquo;s actual grass, actual trees, and actual quiet.<br/><br/>Inside, the living room opens up around you &mdash; open concept, natural light, and a fireplace for a Friday night in. And then there&rsquo;s the kitchen &mdash; open, flowing, the center of things. Head upstairs to the primary suite, or set up at the top of the stairs in the extra space &mdash; a proper spot that makes working from home feel like something you designed on purpose.<br/><br/>Boulder is twenty minutes down the Diagonal. You already know if this is your place. Come see it anyway &mdash; just to be sure.</div>
       <div class="qr-block">
-        <img src="data:image/png;base64,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" alt="QR code"/>
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoCAIAAABkZftOAAAGFklEQVR4nO3dwZEkNRRAURqRxSRAIkRNIiQwcXwWrJD4C0t+XLvrnCUaqn5V15UXT7a/nuf5Bfh//Vo/AHwi4UFAeBAQHgSEBwHhQUB4EBAeBIQHAeFBQHgQEB4EhAcB4UFAeBD4bfV/+PH7HxPPsd3Pv/78z/9+2vO/Peeq1c+1+r7Tr7/rfSurn9eKBwHhQUB4EBAeBIQHAeFBQHgQWJ7jvdk1t1lVzXl2zQnf/v3q66/++11zuenPu/o803b93qx4EBAeBIQHAeFBQHgQEB4EhAeBbXO8N7vmHtNzm+n9aauqedfq3G/XvHGXW35vVjwICA8CwoOA8CAgPAgIDwLCg8D4HO80u/aVTZ8bOb0fb9pp873TWPEgIDwICA8CwoOA8CAgPAgIDwLfN8ebPpdy17576bOjVy1XW76e7vinafew4oHAeFBQHgQEB4EhAcB4UFAeBAQHgS2zfHe7Jp7TM9tpvenrarmXatz+13zxl1u+b1Z8SAgPAgIDwLCg4DwICA8CAgPAtvmeNX5jatOO8eyOidz+tzL6ed/5ff2xooHAeFBQHgQEB4EhAcB4UFAeBAQHgS27X68abmteNX0vr3vus9bl2feN6keBAQHgSEBwHhQUB4EBAeBIQHgY/N8bJzKZdv8+a0ue5p+/Gq8z5P268oHgSEBwHhQUB4EBAeBIQHAeFBQHgQ2H4/3vQcb9e+tOlzI6fvpZved2jeP+mco+JBQHgQEB4EhAcB4UFAeBAQHgS+nud5fIYPtu17M62696utWPEgIDwICA8CwoOA8CAgPAgIDwLb5nj/m92zeNS+tOq7VuaL7+bW/7eKx4EhAcB4UFAeBAQHgSEBwHhQUB4ENg2x6vOb9y+nwqAFQ8CwoOA8CAgPAgIDwLCg4DwICA8CAgPAsKDgPAgIDwICA8CwoPAsn8/3rRd+7Vu3U+1fe/cqnmepub9rAiHFQ8CwoOA8CAgPAgIDwLCg4DwIDA+x7tl7lTduyvXOe3dyXXO+XLbHsMVKx4EhAcB4UFAeBAQHgSEBwHhQWB7jvfKfqcpU/OxKa/vu7vtedgpKx4EhAcB4UFAeBAQHgSEBwHhQWBsjlede7nqtPN/b3vO9rSf04oHAeFBQHgQEB4EhAcB4UFAeBAQHgS2nau5a35j1WnvDw==" alt="QR code"/>
         <div class="qr-text">
           <div class="qr-label">Scan for full listing &amp; photos</div>
           <div class="qr-url">762stonebridge.solomonhomeservices.com</div>
